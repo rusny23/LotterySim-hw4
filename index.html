@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Lottery Simulation </title>
+    <style type="text/css"> 
+                
+        body{
+            font-size: 12pt;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+    </style>
+
+<script language="javascript">
+    function myFunction() {
+        var match = 0;
+        var luckylucky = 0;
+        var lottery = 0;
+        var determine = "";
+        var prize = 0;
+        var winArr = [20, 33, 38, 39, 40];
+        var winLucky = 6;
+        var yourArr = [];
+        var yourPrompt = prompt("Enter your numbers: ", get5RandomInt(1, 48));
+        var yourArr = yourPrompt.split(" ");
+        var lucky = prompt("Enter your luck number: ", Math.floor(Math.random() * (18 - 1) + 1));
+ 
+        yourArr = yourArr.map(Number);
+        yourArr.sort(function(a,b){return a - b});
+
+        for(var i = 0; i < 5; i++)
+        {
+            if(yourArr[i] == winArr[i]){
+                lottery++;
+                match++;}
+        }
+
+        if(lucky == winLucky){
+            match++;
+            luckylucky = 1;}
+        
+        if(luckylucky == 1)
+        {
+            determine = "Lucky ball matches.";
+            if(lottery == 0)
+                prize = "$" + 4;
+            else if(lottery == 1)
+                prize = "$" + 6;
+            else if(lottery == 2)
+                prize = "$" + 25;
+            else if(lottery == 3)
+                prize = "$" + 150;
+            else if(lottery == 4)
+                prize = "$" + 5000;
+            else if(lottery == 5)
+                prize = "$" + 7000 + " a WEEK for LIFE.";
+        }
+        else
+        {
+            determine = "Lucky ball does not match.";
+            if(lottery == 0)
+                prize = "$" + 0;
+            else if(lottery == 1)
+                prize = "$" + 0;
+            else if(lottery == 2)
+                prize = "$" + 3;
+            else if(lottery == 3)
+                prize = "$" + 20;
+            else if(lottery == 4)
+                prize = "$" + 200;
+            else if(lottery == 5)
+                prize = "$" + 25000 + " a YEAR for LIFE.";
+        }
+
+        document.write("Random Pick: ");
+        for (var i = 0; i < 5; i++)
+        {
+            document.write(yourArr[i] + " ");
+        }
+        document.write("lucky " + lucky +"</br>");
+        document.write("Winning numbers sorted: ");
+        for (var i = 0; i < 5; i++)
+        {
+            document.write(winArr[i] + " ");
+        }
+        document.write("lucky " + winLucky +"</br>");
+        document.write("Number matching: " + match + "</br>");
+        document.write(determine + "</br>"); 
+        document.write("Your winnings: " + prize);      
+    }
+
+    function get5RandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        var string = "";
+        for(var i = 0; i < 5; i++)
+        {
+            string += Math.floor(Math.random() * (max - min) + min);
+            if(i == 4)
+            {
+                return string;
+            }
+            else
+            {
+                string += " "; 
+            }  
+        }
+        return string;
+    }
+	
+</script>
+</head>
+
+<body>
+    <script language="javascript">
+		myFunction();
+	</script>
+</body>
+</html>
